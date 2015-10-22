@@ -2,10 +2,12 @@
 (function($) {
   $.fn.eventTransmit = function(option) {
     var defaults = {
-      runtime:  5000,
       category: "",
       action:   "",
-      label:    ""
+      label:    "",
+      position: "default",
+      runtime:  5000,
+      debug:    false
     };
     var setting = $.extend(defaults,option);
 
@@ -26,10 +28,18 @@
       targetOffset = $target.offset().top;
       targetHeight = $target.height();
       windowHeight = $window.height();
-      view = {
-        'top':    targetOffset - windowHeight/2,
-        'bottom': targetOffset + targetHeight - windowHeight/2
-      };
+
+      if (setting.position == "bottom") {
+        view = {
+          'top'   : targetOffset - windowHeight,
+          'bottom': targetOffset + targetHeight
+        };
+      } else {
+        view = {
+          'top':    targetOffset - windowHeight/2,
+          'bottom': targetOffset + targetHeight - windowHeight/2
+        };
+      }
 
       set();
     });
@@ -62,10 +72,12 @@
     }
 
     function clear() {
+      if (setting.debug) { console.log('Event Transmit Clear'); }
       clearTimeout(timer);
     }
 
     function transmit() {
+      if (setting.debug) { console.log($target.attr('class'), setting.category, setting.action, setting.label); }
       ga('send', 'event', setting.category, setting.action, setting.label, {'nonInteraction':true});
       flag = false;
       clearflag = false;
