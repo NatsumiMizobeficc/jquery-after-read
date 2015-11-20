@@ -1,6 +1,6 @@
 /*! jquery-event-transmit v1.0.0 | (c) 2015, TomoyaOtsuka | MIT Licence */
 (function($) {
-  $.fn.eventTransmit = function(option) {
+  $.fn.afterRead = function(option) {
     var defaults = {
       category: "",
       action:   "",
@@ -29,7 +29,7 @@
       targetHeight = $target.height();
       windowHeight = $window.height();
 
-      if (setting.position == "bottom") {
+      if (setting.position == "cover") {
         view = {
           'top'   : targetOffset - windowHeight,
           'bottom': targetOffset + targetHeight
