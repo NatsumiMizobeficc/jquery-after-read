@@ -7,6 +7,7 @@
       label:    "",
       position: "default",
       runtime:  5000,
+      gtm:      false,
       debug:    false
     };
     var setting = $.extend(defaults,option);
@@ -78,7 +79,13 @@
 
     function transmit() {
       if (setting.debug) { console.log($target.attr('class'), setting.category, setting.action, setting.label); }
-      ga('send', 'event', setting.category, setting.action, setting.label, {'nonInteraction':true});
+
+      if (setting.gtm) {
+        dataLayer.push({ 'event': 'ga-dl-push', 'ga_category': setting.category, 'ga_action': setting.action, 'ga_label': setting.label });
+      }
+      else {
+        ga('send', 'event', setting.category, setting.action, setting.label, {'nonInteraction':true});
+      }
       flag = false;
       clearflag = false;
     }
