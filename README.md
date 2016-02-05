@@ -14,6 +14,7 @@ $('#area').afterRead({
   label:    "Label name",
   position: "default",
   runtime:  5000,
+  gtm:      false
   debug:    false
 });
 ```
@@ -26,10 +27,14 @@ $('#area').afterRead({
 | position | "default"     | 指定エリアがビュー内の1/2以上を占める場合を閲覧とみなす      |
 |          | "cover"       | 指定エリアがビュー内に表示された場合を閲覧とみなす           |
 | runtime  | 5000(default) | 指定エリアが設定ビュー内に入ってからイベント発火までのミリ秒 |
+| gtm      | false         | GTM使用時にtrueを設定                                        |
 | debug    | true          | イベント発火とリセット時をコンソールに表示                   |
 
 
 
 ## log
+### 20160205
+* GTM使用時のオプションを追加
+
 ### 20151120
 * ライブラリ名、オプション名をリネーム
